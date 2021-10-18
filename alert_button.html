@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 65%;
+        }
+        #btn {
+            width: 20rem;
+            display: block;
+            margin: 2rem auto;
+        }
+        #cont {
+            width: 10rem;
+            margin: auto;
+        }
+        #cont > button {
+            width: 5rem;
+            display: block;
+            background-color: aqua;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Show</button>
+    <div id="cont">
+
+    </div>
+    <script>
+    var create = document.getElementById("btn");
+    var container = document.getElementById("cont");
+         container.addEventListener('click', function () {
+          // event.target.stopPropagation()  
+          if(event.target.textContent === "12345")   {
+              return;
+          }      
+            alert(event.target.textContent)
+           
+         });
+
+        function createButton() {
+            container.innerHTML = null;
+            
+            for (var i = 0; i < 5; i++) {
+                var btns = document.createElement("button");
+                btns.textContent = i+1;
+               
+                container.appendChild(btns);
+            }
+        }
+
+        create.addEventListener("click", createButton);
+    </script>
+</body>
+</html>
