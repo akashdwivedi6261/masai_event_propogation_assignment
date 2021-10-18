@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 75%;
+          
+        }
+        #result {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #result > div {
+            margin: 2rem 2rem;
+            border: 1px solid red;
+            flex-basis: 25%;
+        }
+        #result button {
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    Name: <input id="names" placeholder="Enter Name" type="text"/>
+    Phone: <input id="phones" type="number"/>
+    <button id="btns">Create</button>
+    <div id="result">
+
+    </div>
+    <script>
+        let name = document.getElementById("names");
+        let phone = document.getElementById("phones");
+        let cont = document.getElementById("result");
+        let btn = document.getElementById("btns");
+
+        window.addEventListener("load", function () {
+            btn.addEventListener("click", showDetails)
+            
+        })
+
+        function showDetails() {
+            if(!name.value || !phone.value) {
+                return;
+            }
+            let div = document.createElement("div");
+
+            let h3 = document.createElement("h3");
+            h3.textContent ="Name: " + name.value;
+
+            var num = document.createElement("h3");
+            num.textContent ="Phone: " + phone.value;
+            num.style.display = "block"
+
+            var show = document.createElement("button");
+            show.textContent = "show/Hide";
+
+            div.append(h3, num, show)
+            cont.append(div)
+            div.addEventListener("click" , function () { //event listener for showing that on clicking show button its not giving alert of its parent
+                alert("parent") 
+            })
+            console.log(num.textContent)
+
+            show.addEventListener("click", function () {
+                event.stopPropagation()
+                alert("Not showing parent")
+
+                if(num.style.display === "block") {
+                    console.log("akd")
+                    num.style.display = "none"
+                }
+                else if(num.style.display === "none") {
+                    console.log("sohit")
+
+                    num.style.display = "block"
+                }
+            })
+
+            name.value = null
+            phone.value = null;
+        }
+
+     
+    </script>
+</body>
+</html>
